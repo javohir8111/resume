@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="{% block lang %}uz{% endblock %}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}Javoxir Sadullayev - Middle Fullstack Developer, temir yo'l monitoring tizimlari va zamonaviy web-ilovalarni yaratuvchi mutaxassis.{% endblock %}">
+    <meta name="keywords" content="fullstack developer, Javoxir Sadullayev, temir yo'l monitoring, web development, React, Node.js, Python">
+    <meta name="author" content="Javoxir Sadullayev">
+    <meta property="og:title" content="{% block og_title %}Javoxir Sadullayev - Fullstack Developer{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Temir yo'l monitoring va web apps mutaxassisi. 5+ yillik tajriba.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}assets/image.png{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}https://yourdomain.com{% endblock %}">
+    <meta property="og:type" content="website">
+    <title>{% block title %}Javoxir Sadullayev - Fullstack Developer{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <style>
+        /* Base CSS - Umumiy uslublar, index.html va projects.html ga moslashtirilgan */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        body.dark {
+            background: #121212;
+            color: #e0e0e0;
+        }
+        /* Header */
+        
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+        
+        .dark header {
+            background: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding-bottom: 0.2rem;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-links a:hover {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+        }
+        
+        .theme-toggle,
+        .lang-switch {
+            cursor: pointer;
+            margin-left: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .lang-switch button {
+            background: none;
+            border: none;
+            color: inherit;
+            padding: 0.5rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .lang-switch button.active {
+            color: #007bff;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        /* Footer */
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        .dark footer {
+            background: #000;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .social a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social a:hover {
+            color: #007bff;
+        }
+        
+        .footer-links {
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #007bff;
+        }
+        /* Animatsiyalar */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        /* Smooth scrolling */
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            .dark .nav-links {
+                background: #1e1e1e;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+        /* Modal - Umumiy foydalanish uchun */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            position: relative;
+            animation: zoomIn 0.4s ease;
+            text-align: left;
+        }
+        
+        .dark .modal-content {
+            background: #1e1e1e;
+        }
+        
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #007bff;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        {
+            % block extra_css %
+        }
+        
+        {
+            % endblock %
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <div class="logo">JS</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'index' %}">Bosh</a></li>
+                <li><a href="{% url 'about' %}">Haqimda</a></li>
+                <li><a href="{% url 'projects' %}">Loyihalar</a></li>
+                <li><a href="{% url 'contact' %}">Kontakt</a></li>
+            </ul>
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="lang-switch">
+                <button onclick="changeLang('uz')" class="active">UZ</button>
+                <button onclick="changeLang('en')">EN</button>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Javoxir Sadullayev. Barcha huquqlar himoyalangan.</p>
+            <p data-lang="uz">Email: javoxir@example.com | Telefon: +998 XX XXX XX XX</p>
+            <p data-lang="en" style="display: none;">Email: javoxir@example.com | Phone: +998 XX XXX XX XX</p>
+            <div class="social">
+                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:javoxir@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="{% url 'privacy' %}" data-lang="uz">Maxfiylik Siyosati</a>
+                <a href="{% url 'privacy' %}" data-lang="en" style="display: none;">Privacy Policy</a>
+                <a href="{% url 'terms' %}" data-lang="uz">Foydalanish Shartlari</a>
+                <a href="{% url 'terms' %}" data-lang="en" style="display: none;">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JS - Umumiy funksiyalar: Theme, Language, Menu
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            const icon = document.querySelector('.theme-toggle i');
+            icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+
+        function changeLang(lang) {
+            localStorage.setItem('language', lang);
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? 'block' : 'none';
+            });
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.toggle('active', btn.onclick.toString().includes(`'${lang}'`));
+            });
+        }
+
+        const savedLang = localStorage.getItem('language') || 'uz';
+        changeLang(savedLang);
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Modal funksiyalari
+        function openModal(card) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            if (modal && modalBody) {
+                modalBody.innerHTML = card.innerHTML;
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        window.onclick = (e) => {
+            const modal = document.getElementById('modal');
+            if (modal && e.target === modal) {
+                closeModal();
+            }
+        };
+
+        { % block extra_js %
+        } { % endblock %
+        }
+    </script>
+</body>
+
+</html>

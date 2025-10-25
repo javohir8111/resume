@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javoxir Sadullayev - Middle Fullstack Developer</title>
+    <meta name="description" content="Javoxir Sadullayev - Middle Fullstack Developer, temir yo'l monitoring tizimlari va zamonaviy web-ilovalarni yaratuvchi mutaxassis. 2 yillik tajriba, Ingliz va Rus tillari B2 darajasi.">
+    <meta name="keywords" content="fullstack developer, Javoxir Sadullayev, temir yo'l monitoring, web development, React, Node.js, Python, Uzbekistan developer">
+    <meta name="author" content="Javoxir Sadullayev">
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Javoxir Sadullayev - Fullstack Developer">
+    <meta property="og:description" content="Temir yo'l monitoring va web apps mutaxassisi. 2 yillik tajriba, Ingliz va Rus tillari B2 darajasi.">
+    <meta property="og:image" content="images/image.png">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Favicon qo'shildi -->
+    <style>
+        /* CSS boshlanishi - Optimallashtirilgan, zamonaviy va logik: Gradientlar, smooth transitions, responsive dizayn */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            /* Horizontal scroll oldini olish */
+        }
+        
+        body.dark {
+            background: #121212;
+            color: #e0e0e0;
+        }
+        /* Header - Yopishqoq, smooth hover effektlari */
+        
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+        
+        .dark header {
+            background: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding-bottom: 0.2rem;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-links a:hover {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+        }
+        
+        .theme-toggle,
+        .lang-switch {
+            cursor: pointer;
+            margin-left: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .lang-switch button {
+            background: none;
+            border: none;
+            color: inherit;
+            padding: 0.5rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .lang-switch button.active {
+            color: #007bff;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        /* Hero - Animatsiya, gradient fon, center alignment */
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 100px 2rem 4rem;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dark .hero {
+            background: linear-gradient(135deg, #1e1e1e, #2c3e50);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 5s infinite;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+            max-width: 800px;
+        }
+        
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 4px solid #007bff;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .hero h2 {
+            color: #007bff;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .hero p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .cta-btn {
+            background: #007bff;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+        
+        .hero-social {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .hero-social a {
+            color: #007bff;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .hero-social a:hover {
+            color: #0056b3;
+        }
+        /* About Section - Yangi: Tajriba, tillar va haqida ma'lumot */
+        
+        .about {
+            padding: 4rem 2rem;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        
+        .dark .about {
+            background: #1e1e1e;
+        }
+        
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .about p {
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .languages {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .language-item {
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .dark .language-item {
+            background: #2c3e50;
+        }
+        
+        .language-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .language-item span {
+            font-weight: 600;
+            color: #007bff;
+        }
+        /* Skills Section - Ko'nikmalar, ikonlar bilan */
+        
+        .skills {
+            padding: 4rem 2rem;
+            background: #fff;
+            text-align: center;
+        }
+        
+        .dark .skills {
+            background: #121212;
+        }
+        
+        .skills h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .skill-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .dark .skill-item {
+            background: #2c3e50;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-item i {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 0.5rem;
+        }
+        /* Certifications Section - Sertifikatlar uchun yangi bo'lim */
+        
+        .certifications {
+            padding: 4rem 2rem;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        
+        .dark .certifications {
+            background: #1e1e1e;
+        }
+        
+        .certifications h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .cert-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: left;
+        }
+        
+        .dark .cert-item {
+            background: #2c3e50;
+        }
+        
+        .cert-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cert-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #007bff;
+        }
+        
+        .cert-item p {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cert-item a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .cert-item a:hover {
+            text-decoration: underline;
+        }
+        /* Preview - Loyihalar, hover overlay bilan */
+        
+        .preview {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: #fff;
+        }
+        
+        .dark .preview {
+            background: #121212;
+        }
+        
+        .preview h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .dark .project-card {
+            background: #2c3e50;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 123, 255, 0.8);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-overlay h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-overlay p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-links a {
+            background: white;
+            color: #007bff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 3px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .project-links a:hover {
+            background: #f0f0f0;
+        }
+        /* Footer - Email, telefon, social va links */
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        .dark footer {
+            background: #000;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .social a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social a:hover {
+            color: #007bff;
+        }
+        
+        .footer-links {
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #007bff;
+        }
+        /* Animatsiyalar - Pulse va fadeInUp */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        /* Responsive - Mobile uchun yaxshi moslash */
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            .dark .nav-links {
+                background: #1e1e1e;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hero {
+                padding: 80px 1rem 4rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            .skills-grid,
+            .cert-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .languages {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        /* CSS tugashi */
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <div class="logo">JS</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Bosh</a></li>
+                <li><a href="about.html">Haqimda</a></li>
+                <li><a href="projects.html">Loyihalar</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="lang-switch">
+                <button onclick="changeLang('uz')" class="active">UZ</button>
+                <button onclick="changeLang('en')">EN</button>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <img src="images/image.png" alt="Javoxir Sadullayev - Profil rasmi" class="profile-img">
+                <h1>Javoxir Sadullayev</h1>
+                <h2>Middle Fullstack Developer</h2>
+                <p data-lang="uz">Fullstack dasturchiman. UZUM, EVOS, TSTU, UZRAILWAYS va RAILSAFE kabi yirik loyihalarda ishlaganman. React, Python, Node.js, SQL/NoSQL bilan ishlashda boy tajribaga egaman.</p>
+                <p data-lang="en" style="display: none;">Fullstack Developer with hands-on experience in large-scale projects including UZUM, EVOS, TSTU, UZRAILWAYS, and RAILSAFE. Skilled in React, Python, Node.js, and SQL/NoSQL.</p>
+                <a href="projects.html" class="cta-btn">Loyihalarni Ko'rish</a>
+                <div class="hero-social">
+                    <a href="https://github.com/javohir8111" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/javokhir" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:javohir8111@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section - Tajriba va tillar -->
+        <section class="about">
+            <h2 data-lang="uz">Men Haqimda</h2>
+            <h2 data-lang="en" style="display: none;">About Me</h2>
+            <p data-lang="uz">Middle fullstack dasturchiman. 2 yildan ortiq tajriba davomida temir yo'l xavfsizligi sohasidagi monitoring tizimlari hamda zamonaviy veb-ilovalarni ishlab chiqdim. Frontend (React, JavaScript) va backend (Python, Node.js) texnologiyalarini
+                mukammal birlashtira olaman. Ma’lumotlar bazasi (SQL/NoSQL), bulutli yechimlar (AWS/Azure) va ochiq kodli loyihalar bilan ham ishlaganman. Ingliz va rus tillarini B2 darajasida bilaman — xalqaro standartlar hamda hujjatlarga mos ishlash
+                imkonini beradi.</p>
+            <p data-lang="en" style="display: none;">Middle Fullstack Developer with 2+ years of experience building railway safety monitoring systems and modern web applications. Proficient in both frontend (React, JavaScript) and backend (Python, Node.js) development. Experienced with databases
+                (SQL/NoSQL), cloud platforms (AWS/Azure), and open-source collaboration. Communicates fluently in English and Russian (B2 level), enabling effective work with international teams and documentation.</p>
+            <div class="languages">
+                <div class="language-item">
+                    <i class="fas fa-language"></i>
+                    <p data-lang="uz">Ingliz tili: B2</p>
+                    <p data-lang="en" style="display: none;">English: B2</p>
+                </div>
+                <div class="language-item">
+                    <i class="fas fa-language"></i>
+                    <p data-lang="uz">Rus tili: B2</p>
+                    <p data-lang="en" style="display: none;">Russian: B2</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills">
+            <h2 data-lang="uz">Ko'nikmalar</h2>
+            <h2 data-lang="en" style="display: none;">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fab fa-react"></i>
+                    <h3>React.js</h3>
+                    <p data-lang="uz">Frontend UI yaratish</p>
+                    <p data-lang="en" style="display: none;">Frontend UI development</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-node-js"></i>
+                    <h3>Node.js</h3>
+                    <p data-lang="uz">Backend API va server</p>
+                    <p data-lang="en" style="display: none;">Backend API and server</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-python"></i>
+                    <h3>Python/Django</h3>
+                    <p data-lang="uz">Web apps va monitoring</p>
+                    <p data-lang="en" style="display: none;">Web apps and monitoring</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL/NoSQL</h3>
+                    <p data-lang="uz">Ma'lumotlar bazasi (PostgreSQL, MongoDB)</p>
+                    <p data-lang="en" style="display: none;">Databases (PostgreSQL, MongoDB)</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-train"></i>
+                    <h3>Railway Tech</h3>
+                    <p data-lang="uz">Temir yo'l monitoring</p>
+                    <p data-lang="en" style="display: none;">Rail monitoring systems</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud (AWS/Azure)</h3>
+                    <p data-lang="uz">Bulutli deploy</p>
+                    <p data-lang="en" style="display: none;">Cloud deployment</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section - Sertifikatlar uchun joy -->
+        <section class="certifications">
+            <h2 data-lang="uz">Sertifikatlar</h2>
+            <h2 data-lang="en" style="display: none;">Certifications</h2>
+            <div class="cert-grid">
+                <!-- Sertifikatlarni shu yerga qo'shing, masalan: -->
+                <div class="cert-item">
+                    <h3>AWS Certified Developer</h3>
+                    <p data-lang="uz">Berilgan: 2024 yil, AWS</p>
+                    <p data-lang="en" style="display: none;">Issued: 2024, AWS</p>
+                    <a href="https://example.com/certificate" target="_blank">Ko'rish</a>
+                </div>
+                <div class="cert-item">
+                    <h3>Google Professional Data Engineer</h3>
+                    <p data-lang="uz">Berilgan: 2024 yil, Google Cloud</p>
+                    <p data-lang="en" style="display: none;">Issued: 2024, Google Cloud</p>
+                    <a href="https://example.com/certificate" target="_blank">Ko'rish</a>
+                </div>
+                <div class="cert-item">
+                    <h3>Fullstack Development Certification</h3>
+                    <p data-lang="uz">Berilgan: 2024 yil, Udemy</p>
+                    <p data-lang="en" style="display: none;">Issued: 2024, Udemy</p>
+                    <a href="https://example.com/certificate" target="_blank">Ko'rish</a>
+                </div>
+                <!-- Qo'shimcha sertifikatlarni qo'shing -->
+            </div>
+        </section>
+
+        <!-- Preview Section - Loyihalar -->
+        <section class="preview">
+            <h2 data-lang="uz">Eng So'nggi Loyihalar</h2>
+            <h2 data-lang="en" style="display: none;">Latest Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="asserts/railsafe.png" alt="RailSafe">
+                    <div class="project-overlay">
+                        <h3>RailSafe</h3>
+                        <p data-lang="uz">Temir yo'l relslarini monitoring qiluvchi tizim.</p>
+                        <p data-lang="en" style="display: none;">Railway rail monitoring system.</p>
+                        <div class="project-links">
+                            <a href="https://javohir8111.github.io/railsafeuz/">Ko'rish</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Qo'shimcha loyihalarni qo'shing -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Javoxir Sadullayev. Barcha huquqlar himoyalangan.</p>
+            <p data-lang="uz">Email: javokhir06062005@gmail.com | Telefon: +998 93 983 61 11</p>
+            <p data-lang="en" style="display: none;">Email: javokhir06062005@gmail.com | Phone: +998 93 983 61 11</p>
+            <div class="social">
+                <a href="https://t.me/JavoxirSadullayev" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://github.com/javohir8111" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/javokhir" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/javokhir" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:javokhir06062005@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html" data-lang="uz">Maxfiylik Siyosati</a>
+                <a href="privacy.html" data-lang="en" style="display: none;">Privacy Policy</a>
+                <a href="terms.html" data-lang="uz">Foydalanish Shartlari</a>
+                <a href="terms.html" data-lang="en" style="display: none;">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JS boshlanishi - Yaxshilangan: Dinamik lang o'zgartirish (reloadsiz), active class
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            const icon = document.querySelector('.theme-toggle i');
+            icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // Load theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+
+        // Lang switch - Dinamik, reloadsiz
+        function changeLang(lang) {
+            localStorage.setItem('language', lang);
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? 'block' : 'none';
+            });
+            // Update active button
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.toggle('active', btn.onclick.toString().includes(`'${lang}'`));
+            });
+        }
+
+        // Load lang
+        const savedLang = localStorage.getItem('language') || 'uz';
+        changeLang(savedLang);
+
+        // Mobile menu
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // JS tugashi
+    </script>
+</body>
+
+</html>

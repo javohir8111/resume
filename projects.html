@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loyihalar - Javoxir Sadullayev</title>
+    <meta name="description" content="Javoxir Sadullayevning loyihalari: Temir yo'l monitoring, online do'konlar va boshqa zamonaviy web-ilovalar.">
+    <meta name="keywords" content="loyihalar, fullstack developer, Javoxir Sadullayev, React, Node.js, Python">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS - Index.html dagiga moslashtirilgan, kuchaytirilgan va zamonaviy: Yangi effektlar, gradientlar, smooth transitions */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        body.dark {
+            background: #121212;
+            color: #e0e0e0;
+        }
+        /* Header - Index.html dagiga mos */
+        
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+        
+        .dark header {
+            background: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding-bottom: 0.2rem;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-links a:hover {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+        }
+        
+        .theme-toggle,
+        .lang-switch {
+            cursor: pointer;
+            margin-left: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .lang-switch button {
+            background: none;
+            border: none;
+            color: inherit;
+            padding: 0.5rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .lang-switch button.active {
+            color: #007bff;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        /* Projects Section - Kuchaytirilgan: Overlay hover, tech tags */
+        
+        .projects {
+            padding: 100px 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            background: #f9f9f9;
+            transition: background 0.3s;
+        }
+        
+        .dark .projects {
+            background: #1e1e1e;
+        }
+        
+        .projects h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #007bff;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .dark .project-card {
+            background: #2c3e50;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 123, 255, 0.2);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 123, 255, 0.8));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1rem;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-overlay h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-overlay p {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.8);
+            color: #007bff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .project-links a {
+            background: white;
+            color: #007bff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .project-links a:hover {
+            background: #f0f0f0;
+        }
+        /* Modal - Yaxshilangan: Responsive, zoom effekt */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            position: relative;
+            animation: zoomIn 0.4s ease;
+            text-align: left;
+        }
+        
+        .dark .modal-content {
+            background: #1e1e1e;
+        }
+        
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #007bff;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-content p {
+            margin-bottom: 1.5rem;
+        }
+        /* Footer - Index.html dagiga mos, qo'shimcha links */
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .social a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social a:hover {
+            color: #007bff;
+        }
+        /* Animatsiyalar - Kuchaytirilgan */
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            .dark .nav-links {
+                background: #1e1e1e;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .projects h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <div class="logo">JS</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Bosh</a></li>
+                <li><a href="about.html">Haqimda</a></li>
+                <li><a href="projects.html">Loyihalar</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="lang-switch">
+                <button onclick="changeLang('uz')" class="active">UZ</button>
+                <button onclick="changeLang('en')">EN</button>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="projects">
+            <h1 data-lang="uz">Mening Loyihalarim</h1>
+            <h1 data-lang="en" style="display: none;">My Projects</h1>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="asserts/uzrailways.png" alt="RailSafe - Temir yo'l monitoring tizimi" class="project-img">
+                    <div class="project-overlay">
+                        <h3>RailSafe</h3>
+                        <p data-lang="uz">O'zbekiston Yo'llari uchun temir yo'l relslarining haroratini monitoring qiluvchi veb-tizim. AI bilan xavfni oldindan bashorat qiladi.</p>
+                        <p data-lang="en" style="display: none;">Web system for monitoring railway rail temperatures for Uzbekistan Railways. AI predicts risks.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AI/ML</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://railway.uz/uz/" target="_blank">Ko'rish</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="asserts/image1.png" alt="Uzum Market - Online do'kon" class="project-img">
+                    <div class="project-overlay">
+                        <h3>UZUM Market</h3>
+                        <p data-lang="uz">Uzum market uchun to'liq online do'kon tizimi, to'lov va admin panel bilan.</p>
+                        <p data-lang="en" style="display: none;">Full-featured online store for Uzum Market with payment and admin panel.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://uzum.uz/uz" target="_blank">Ko'rish</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="asserts/evos.webp" alt="Evos - Maxsus loyiha" class="project-img">
+                    <div class="project-overlay">
+                        <h3>Evos</h3>
+                        <p data-lang="uz">Evos uchun maxsus loyiha: Mijozlarni qo'llab-quvvatlash va buyurtma boshqaruv tizimi.</p>
+                        <p data-lang="en" style="display: none;">Custom project for Evos: Customer support and order management system.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://evos.uz/" target="_blank">Ko'rish</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="asserts/tstu.webp" alt="TSTU Rektor Qabulxonasi" class="project-img">
+                    <div class="project-overlay">
+                        <h3>TSTU Rektor Qabulxonasi</h3>
+                        <p data-lang="uz">Talabalar TSTU rektoriga murojatlar yo'llashi mumkin bo'lgan veb-platforma.</p>
+                        <p data-lang="en" style="display: none;">Web platform for students to submit appeals to TSTU rector.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Node.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://tstu.uz/" target="_blank">Ko'rish</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/image.png" alt="Personal Portfolio Site" class="project-img">
+                    <div class="project-overlay">
+                        <h3>Personal Portfolio Site</h3>
+                        <p data-lang="uz">Bu saytning prototipi – responsive dizayn va zamonaviy animatsiyalar bilan.</p>
+                        <p data-lang="en" style="display: none;">Prototype of this site with responsive design and modern animations.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/portfolio" target="_blank">GitHub</a>
+                            <a href="index.html" target="_blank">Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="project-card">
+                    <img src="asserts/railsafe.png" alt="Mobile Railway Tracker" class="project-img">
+                    <div class="project-overlay">
+                        <h3>Mobile Railway Tracker</h3>
+                        <p data-lang="uz">Mobil ilova – temir yo'l holatini real-time kuzatish va bildirishnomalar bilan.</p>
+                        <p data-lang="en" style="display: none;">Mobile app for real-time railway status tracking with notifications.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/yourusername/mobile-rail-tracker" target="_blank">GitHub</a>
+                            <a href="https://javohir8111.github.io/railsafeuz/" target="_blank">Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Javoxir Sadullayev. Barcha huquqlar himoyalangan.</p>
+            <div class="social">
+                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JS - Index.html dagiga mos, dinamik lang o'zgartirish (reloadsiz)
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            const icon = document.querySelector('.theme-toggle i');
+            icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+
+        function changeLang(lang) {
+            localStorage.setItem('language', lang);
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? 'block' : 'none';
+            });
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.toggle('active', btn.onclick.toString().includes(`'${lang}'`));
+            });
+        }
+
+        const savedLang = localStorage.getItem('language') || 'uz';
+        changeLang(savedLang);
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Modal funksiyalari
+        function openModal(card) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = card.innerHTML;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        window.onclick = (e) => {
+            const modal = document.getElementById('modal');
+            if (e.target === modal) closeModal();
+        };
+
+        // Mobile menu close on click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
